@@ -44,8 +44,8 @@ int lastUpdate = 0;
 
 /* Thingspeak */
 TCPClient client;
-unsigned long myChannelNumber = 349697;
-const char * myWriteAPIKey = "QPZNTP1R6SQ6B6PX";
+unsigned long myChannelNumber = 329697;
+const char * myWriteAPIKey = "QPZNTP1R6FSLFAB6PX";
 
 void setup() {
     // Connect to ThingSpeak
