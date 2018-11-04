@@ -1,9 +1,8 @@
 
-
-// This #include statement was automatically added by the Particle IDE.
+#include "Dewpnt_heatIndx.h"
 #include <ThingSpeak.h>
-// This #include statement was automatically added by the Particle IDE.
 #include <Adafruit_DHT.h>
+// https://www.hackster.io/monkbroc/from-0-to-iot-in-15-minutes-3e2607
 
 // Sensor type
 #define DHTTYPE DHT22    	// DHT 22 (AM2302)
@@ -30,22 +29,14 @@
 
 DHT dht(DHT_SENSOR_PIN, DHTTYPE);
 
-
-// float heatIndex;
-
-
-char humidityString[10];
-char temperatureString[10];
-char heatIndexString[10];
-
 int failed = 0;
 // last time since we sent sensor readings
 int lastUpdate = 0;
 
 /* Thingspeak */
 TCPClient client;
-unsigned long myChannelNumber = XXXXXXX;
-const char * myWriteAPIKey = "YYYYYYYYYYYYY";
+unsigned long myChannelNumber = 349697;
+const char * myWriteAPIKey = "QPZNTP1R6SQ6B6PX";
 
 void setup() {
     // Connect to ThingSpeak
@@ -66,19 +57,6 @@ void setup() {
     loop();
 }
 
-// http://en.wikipedia.org/wiki/Heat_index
-double getheatIndex(double Temperature, double Humidity)
-{
-  double c1 = -42.38, c2 = 2.049, c3 = 10.14, c4 = -0.2248, c5= -6.838e-3, c6=-5.482e-2, c7=1.228e-3, c8=8.528e-4, c9=-1.99e-6 ; 
-  double T = Temperature;// Your outside Temp sensor reading
-  double R = Humidity;// Your Outside Humidity sensor reading
-  double T2 = T*T;
-  double R2 = R*R;
-  double TR = T*R;
-  double rv = c1 + c2*T + c3*R + c4*T*R + c5*T2 + c6*R2 + c7*T*TR + c8*TR*R + c9*T2*R2;
-  return rv;
-}
-
 void loop() {
     
     int now = Time.now();
@@ -95,8 +73,9 @@ void loop() {
     
     // Read Sensor
     double temperature = dht.getTempCelcius();
+    double temperatureF = (temperature * 1.8) + 32;
     double humidity = dht.getHumidity();
-    double heatIndex = getheatIndex(temperature, humidity);
+    double heatIndex = Funcs::Dewpnt_heatIndx::heatIndex(temperatureF, humidity);
     
     
     if (temperature == NAN
@@ -109,7 +88,7 @@ void loop() {
         failed = 1;
     } else {
         // calculate the heat index
-        heatIndex = getheatIndex(temperature, humidity);
+        heatIndex = Funcs::Dewpnt_heatIndx::heatIndex(temperatureF, humidity);
         // set all 3 fields first
         // Update the 2 ThingSpeak fields with the new data
         ThingSpeak.setField(1, (float)temperature);
@@ -126,6 +105,4 @@ void loop() {
     // Give time for the message to reach ThingSpeak
     delay(5000);
 
-    // Sleep for 15 minutes to save battery
-    // System.sleep(SLEEP_MODE_DEEP, 1 * 60);
 }
