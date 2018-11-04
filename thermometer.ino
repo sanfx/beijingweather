@@ -2,7 +2,6 @@
 #include "Dewpnt_heatIndx.h"
 #include <ThingSpeak.h>
 #include <Adafruit_DHT.h>
-// https://www.hackster.io/monkbroc/from-0-to-iot-in-15-minutes-3e2607
 
 // Sensor type
 #define DHTTYPE DHT22    	// DHT 22 (AM2302)
@@ -35,8 +34,8 @@ int lastUpdate = 0;
 
 /* Thingspeak */
 TCPClient client;
-unsigned long myChannelNumber = 349697;
-const char * myWriteAPIKey = "QPZNTP1R6SQ6B6PX";
+unsigned long myChannelNumber = xxxxx;
+const char * myWriteAPIKey = "yyyyyyyyyyy";
 
 void setup() {
     // Connect to ThingSpeak
