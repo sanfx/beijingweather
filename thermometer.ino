@@ -11,7 +11,6 @@
 #include <ThingSpeak.h>
 
 #include <Adafruit_DHT.h>
-// https://www.hackster.io/monkbroc/from-0-to-iot-in-15-minutes-3e2607
 
 
 // Sensor type
@@ -57,7 +56,7 @@ int lastUpdate = 0;
 
 /* Thingspeak */
 TCPClient client;
-unsigned long myChannelNumber = xxxxxx;
+unsigned long myChannelNumber = xxxxx;
 const char * myWriteAPIKey = "yyyyyyyyyyy";
 
 void setup() {
