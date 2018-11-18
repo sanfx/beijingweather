@@ -1,8 +1,8 @@
 before_script:
-- export NVM_DIR /usr/local/nvm
-- export NVM_NODE_VERSION 6.9.1
-- export PATH $NVM_DIR/versions/node/v$NVM_NODE_VERSION/bin:$PATH
-- export DISPLAY :99
+- export NVM_DIR=/usr/local/nvm
+- export NVM_NODE_VERSION=6.9.1
+- export PATH=$NVM_DIR/versions/node/v$NVM_NODE_VERSION/bin:$PATH
+- export DISPLAY=:99
 
 stages:
   - flash
