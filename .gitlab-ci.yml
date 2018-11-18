@@ -1,24 +1,19 @@
-# This folder is cached between builds
-# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
-cache:
-  paths:
-    - node_modules/
-
 stages:
   - flash
 
 flash_binary:
-  image: node:7
+  image: node:10
   stage: flash
   only:
   - master
   script:
   - apt-get update
   - apt-get -y install curl
-  - curl -sL https://deb.nodesource.com/setup_7.x | bash -
+  - curl -sL https://deb.nodesource.com/setup_10.x | bash -
   - apt-get install -y nodejs
   - npm install npm
   - npm install -g particle-cli
   - particle -q login -u $PARTICLE_USR -p  $PARTICLE_PWD
   - particle compile photon --target 0.7.0
   - particle flash san_particle_photon *.bin 
+
