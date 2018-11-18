@@ -1,9 +1,3 @@
-before_script:
-- export NVM_DIR=/usr/local/nvm
-- export NVM_NODE_VERSION=6.9.1
-- export PATH=$NVM_DIR/versions/node/v$NVM_NODE_VERSION/bin:$PATH
-- export DISPLAY=:99
-
 # This folder is cached between builds
 # http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
@@ -24,8 +18,6 @@ flash_binary:
   - curl -sL https://deb.nodesource.com/setup_7.x | bash -
   - apt-get install -y nodejs
   - npm install npm
-  - node --version
-  - npm --version
   - npm install -g particle-cli
   - particle -q login -u $PARTICLE_USR -p  $PARTICLE_PWD
   - particle compile photon --target 0.7.0
