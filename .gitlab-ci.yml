@@ -8,4 +8,6 @@ flash_binary:
   only:
   - master
   script:
-  - echo "node --version"
+  - node --version
+  - npm --version
+  - npm install -g particle-cli
