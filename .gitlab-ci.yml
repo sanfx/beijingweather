@@ -13,7 +13,10 @@ flash_binary:
   only:
   - master
   script:
-  - echo $PATH
+  - apt-get install curl
+  - curl -sL https://deb.nodesource.com/setup_6.x | bash -
+  - apt-get install -y nodejs
+  - npm install npm --global
   - node --version
   - npm --version
   - npm install -g particle-cli
