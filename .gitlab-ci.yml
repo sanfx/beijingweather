@@ -8,6 +8,8 @@ flash_binary:
   only:
   - master
   script:
+  - curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh
+  - bash nodesource_setup.sh
   - apt-get install nodejs
   - apt-get install build-essential
   - node --version
