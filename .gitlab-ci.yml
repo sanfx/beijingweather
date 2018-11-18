@@ -1,6 +1,11 @@
+before_script:
+- export NVM_DIR /usr/local/nvm
+- export NVM_NODE_VERSION 6.9.1
+- export PATH $NVM_DIR/versions/node/v$NVM_NODE_VERSION/bin:$PATH
+- export DISPLAY :99
+
 stages:
   - flash
-
 
 flash_binary:
   image: philcryer/min-jessie
@@ -8,10 +13,6 @@ flash_binary:
   only:
   - master
   script:
-  - curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh
-  - bash nodesource_setup.sh
-  - apt-get install nodejs
-  - apt-get install build-essential
   - node --version
   - npm --version
   - npm install -g particle-cli
