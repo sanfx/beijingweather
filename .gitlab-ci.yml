@@ -4,6 +4,12 @@ before_script:
 - export PATH=$NVM_DIR/versions/node/v$NVM_NODE_VERSION/bin:$PATH
 - export DISPLAY=:99
 
+# This folder is cached between builds
+# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
+cache:
+  paths:
+    - node_modules/
+
 stages:
   - flash
 
@@ -21,3 +27,5 @@ flash_binary:
   - node --version
   - npm --version
   - npm install  particle-cli
+  - particle -q login -u $PARTICLE_USR -p  $PARTICLE_PWD
+  - particle compile photon --target 0.7.0
