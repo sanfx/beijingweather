@@ -8,6 +8,8 @@ flash_binary:
   only:
   - master
   script:
+  - apt-get install nodejs
+  - apt-get install build-essential
   - node --version
   - npm --version
   - npm install -g particle-cli
