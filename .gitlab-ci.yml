@@ -8,7 +8,7 @@ stages:
   - flash
 
 flash_binary:
-  image: image: node:7
+  image: node:7
   stage: flash
   only:
   - master
