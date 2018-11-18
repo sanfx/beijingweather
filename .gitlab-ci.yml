@@ -26,6 +26,8 @@ flash_binary:
   - npm install npm
   - node --version
   - npm --version
+  - rm *.bin
   - npm install -g particle-cli
   - particle -q login -u $PARTICLE_USR -p  $PARTICLE_PWD
   - particle compile photon --target 0.7.0
+  - particle flash san_particle_photon *.bin 
