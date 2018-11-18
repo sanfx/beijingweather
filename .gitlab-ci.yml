@@ -1,0 +1,11 @@
+stages:
+  - flash
+
+
+flash_binary:
+  image: philcryer/min-jessie
+  stage: flash
+  only:
+  - master
+  script:
+  - echo "node --version"
